@@ -1,35 +1,23 @@
-import Button from "react-bootstrap/Button";
 import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
 } from "react-router-dom";
+import Navbar from "../src/components/Navbar";
+import HomePage from "../src/components/HomePage";
 
 function App() {
   return (
     <Router>
       <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/page1">Page1</Link>
-            </li>
-            <li>
-              <Link to="/page2">Page2</Link>
-            </li>
-          </ul>
-        </nav>
+        <Navbar />
 
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
         <Switch>
           <Route path="/page1">
             <div>
-              <Button>Some button</Button>
+              smth;
             </div>
           </Route>
           <Route path="/page2">
@@ -38,9 +26,7 @@ function App() {
             </div>
           </Route>
           <Route path="/">
-            <div>
-              contenttt
-            </div>
+            <HomePage />
           </Route>
         </Switch>
       </div>
