@@ -14,13 +14,13 @@ const HomePage = () => {
                 <Col className="d-flex justify-content-center">
                     <Form>
                         <Form.Group>
-                            <Form.Label>Search for a university name</Form.Label>
+                            <Form.Label>Search for a University</Form.Label>
                             <Form.Control type="search" placeholder="Search..." />
                         </Form.Group>
                     </Form>
                 </Col>
                 <Col className="d-flex justify-content-center">
-                    small list with recent searches;
+                    Recent Searches
                 </Col>
             </Row>
         </Container>
