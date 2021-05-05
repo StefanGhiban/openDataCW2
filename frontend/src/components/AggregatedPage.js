@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Row, Col, Button, InputGroup } from 'react-bootstrap/';
+import { Container, Row } from 'react-bootstrap/';
 
 
 const AggregatedPage = () => {
