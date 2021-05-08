@@ -2,7 +2,7 @@ import Nav from "react-bootstrap/Nav";
 
 const Navbar = () => {
     return(
-        <Nav className="justify-content-center"  variant="tabs"  defaultActiveKey="/home">
+        <Nav className="justify-content-center"  variant="tabs">
             <Nav.Item>
                 <Nav.Link href="/">Home</Nav.Link>
             </Nav.Item>

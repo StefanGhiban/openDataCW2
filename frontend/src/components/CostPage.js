@@ -1,50 +1,45 @@
 import { useState, useMemo, useEffect } from "react";
 import { useTable } from 'react-table'
 import { Container, Row, Col, Table } from 'react-bootstrap/';
-import axios from "axios";
+import {getCities, getCityIndexes} from "../api/NumbeoAPI";
 
 function CostPage() {
   const [ukData, setUkData] = useState([]);
 
-  useEffect( () => {
-    axios.get('https://www.numbeo.com/api/cities', {
-      params: {
-        api_key: "e77cv9twst4ni2",
-        country: "United Kingdom"
-      }
-    })
+  useEffect(() => {
+    getCities()
       .then(res => {
-        let ukCities = [];
-        res.data.cities.forEach( city => {
-          let ukCity = {}
-          axios.get('https://www.numbeo.com/api/indices', {
-            params: {
-              api_key: "e77cv9twst4ni2",
-              query: city.city + ", United Kingdom"
-            }
-          })
-            .then(res => {
-              if(res.data.cpi_and_rent_index) {
-                ukCity.name = city.city;
-                ukCity.priceIndex = res.data.cpi_index;
-                ukCities.push(ukCity);
-              }
-            })
-            .catch(error => {
-              console.log(error);
-            })
-        })
-        setUkData(ukCities);
+        console.log(res);
+        setUkData(res);
+        // let ukCities = [];
+        // res.forEach(city => {
+        //   let ukCity = {};
+        //   getCityIndexes(city)
+        //     .then(res => {
+        //       if(res.cpi_index) {
+        //         console.log("ok");
+        //         ukCity.name = city.city;
+        //         ukCity.priceIndex = res.cpi_index;
+        //         ukCities.push(ukCity);
+        //       }
+        //     })
+        //     .catch(error => {
+        //       console.log(error);
+        //     });
+        // })
+        // setUkData(ukCities);
       })
       .catch(error => {
         console.log(error);
       })
   }, [])
 
-  const data = useMemo(
-    () => ukData.sort((a, b) => (a.priceIndex < b.priceIndex) ? 1 : -1),
-    []
-  )
+  console.log(ukData);
+
+  // const data = useMemo(
+  //   () => ukData.sort((a, b) => (a.cpi_index < b.cpi_index) ? 1 : -1),
+  //   []
+  // )
 
   const columns = useMemo(
     () => [
@@ -54,11 +49,13 @@ function CostPage() {
       },
       {
         Header: 'Cost Index',
-        accessor: 'priceIndex',
+        accessor: 'cpi_index',
       },
     ],
     []
   )
+
+  // console.log(data);
 
   const {
     getTableProps,
@@ -66,7 +63,7 @@ function CostPage() {
     headerGroups,
     rows,
     prepareRow,
-  } = useTable({ columns, data })
+  } = useTable({ columns, ukData })
 
   return (
     <Container>

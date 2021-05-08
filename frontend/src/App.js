@@ -21,24 +21,16 @@ function App() {
             renders the first one that matches the current URL. */}
         <Switch>
           <Route path="/Unis">
-            <div>
             <UniPage />
-            </div>
           </Route>
           <Route path="/Costs">
-            <div>
             <CostPage />
-            </div>
           </Route>
           <Route path="/Aggregated">
-            <div>
             <AggregatedPage />
-            </div>
           </Route>
           <Route path="/About">
-            <div>
             <AboutPage />
-            </div>
           </Route>
           <Route path="/Contact">
             <ContactPage />
