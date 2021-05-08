@@ -26,7 +26,7 @@ const HomePage = () => {
       .catch(error => {
         console.log(error);
       })
-  }, [])
+  }, [results])
 
   // const d3Graph = useRef(null);
 
@@ -61,7 +61,7 @@ const HomePage = () => {
     event.preventDefault();
 
     getSearchedLocation(search)
-      .then(res => { 
+      .then(res => {
         setResults(res);
 
         if(res.length != 0) {
