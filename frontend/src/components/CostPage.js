@@ -1,7 +1,8 @@
 import { useState, useMemo, useEffect } from "react";
+import React from 'react'
 import { useTable } from 'react-table'
 import { Container, Row, Col, Table } from 'react-bootstrap/';
-import {getCities, getCityIndexes} from "../api/NumbeoAPI";
+import {getCities} from "../api/Api";
 
 function CostPage() {
   const [ukData, setUkData] = useState([]);
@@ -11,37 +12,18 @@ function CostPage() {
       .then(res => {
         console.log(res);
         setUkData(res);
-        // let ukCities = [];
-        // res.forEach(city => {
-        //   let ukCity = {};
-        //   getCityIndexes(city)
-        //     .then(res => {
-        //       if(res.cpi_index) {
-        //         console.log("ok");
-        //         ukCity.name = city.city;
-        //         ukCity.priceIndex = res.cpi_index;
-        //         ukCities.push(ukCity);
-        //       }
-        //     })
-        //     .catch(error => {
-        //       console.log(error);
-        //     });
-        // })
-        // setUkData(ukCities);
       })
       .catch(error => {
         console.log(error);
       })
   }, [])
 
+  const data = React.useMemo(
+    () => ukData.sort((a, b) => (a.cpi_index < b.cpi_index) ? 1 : -1)  );
+
   console.log(ukData);
 
-  // const data = useMemo(
-  //   () => ukData.sort((a, b) => (a.cpi_index < b.cpi_index) ? 1 : -1),
-  //   []
-  // )
-
-  const columns = useMemo(
+  const columns = React.useMemo(
     () => [
       {
         Header: 'City',
@@ -51,11 +33,13 @@ function CostPage() {
         Header: 'Cost Index',
         accessor: 'cpi_index',
       },
+      {
+        Header: 'Rent Index',
+        accessor: 'rent_index',
+      }
     ],
     []
   )
-
-  // console.log(data);
 
   const {
     getTableProps,
@@ -63,7 +47,7 @@ function CostPage() {
     headerGroups,
     rows,
     prepareRow,
-  } = useTable({ columns, ukData })
+  } = useTable({ columns, data })
 
   return (
     <Container>
@@ -116,5 +100,7 @@ function CostPage() {
     </Container>
   )
 }
+
+
 
 export default CostPage;

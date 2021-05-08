@@ -13,6 +13,12 @@ router.route('/:location').get((req, res) => {
   .catch(err => res.status(400).json('Error: ' + err));
 });
 
+router.route('/u/:university').get((req, res) => {
+  University.find({title: req.params.university})
+ .then(universities => res.json(universities))
+ .catch(err => res.status(400).json('Error: ' + err));
+});
+
 router.route('/add').post((req, res) => {
   const ranking = Number(req.body.ranking);
   const title = req.body.title;
