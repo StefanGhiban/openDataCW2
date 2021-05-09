@@ -1,5 +1,7 @@
 import { useState, useEffect, useMemo, useRef } from "react";
 import { useTable } from "react-table";
+import { Link } from "react-router-dom";
+
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -64,7 +66,7 @@ const HomePage = () => {
       .then(res => {
         setResults(res);
 
-        if(res.length != 0) {
+        if(res.length !== 0) {
           saveSearch(search)
             .then(res => {
               console.log(res);
@@ -83,7 +85,7 @@ const HomePage = () => {
       .then(res => {
         setResults(res);
 
-        if(res.length != 0) {
+        if(res.length !== 0) {
           saveSearch(search)
             .then(res => {
               console.log(res);
@@ -152,7 +154,7 @@ const HomePage = () => {
                       </div>
                   </Form>
                   <div>
-                    {results.map(result => (<p>{result.title}</p>))}
+                    {results.map(result => (<Link to={{pathname: `/university/${result.title}`, state: {university: result}}}>{result.title}</Link>))}
                   </div>
               </Col>
               <Col className="d-flex justify-content-center p-2">

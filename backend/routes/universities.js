@@ -7,7 +7,13 @@ router.route('/').get((req, res) => {
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
-router.route('/:location').get((req, res) => {
+router.route('/:id').get((req, res) => {
+  University.find()
+  .then(universities => res.json(universities))
+  .catch(err => res.status(400).json('Error: ' + err));
+});
+
+router.route('/l/:location').get((req, res) => {
    University.find({location: req.params.location})
   .then(universities => res.json(universities))
   .catch(err => res.status(400).json('Error: ' + err));

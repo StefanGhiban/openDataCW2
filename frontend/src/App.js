@@ -10,6 +10,7 @@ import AboutPage from "../src/components/AboutPage";
 import UniPage from "../src/components/UniPage";
 import CostPage from "../src/components/CostPage";
 import AggregatedPage from "../src/components/AggregatedPage";
+import UniversityPage from "../src/components/UniversityPage";
 
 function App() {
   return (
@@ -34,6 +35,9 @@ function App() {
           </Route>
           <Route path="/Contact">
             <ContactPage />
+          </Route>
+          <Route path="/university/:name">
+            <UniversityPage />
           </Route>
           <Route path="/">
             <HomePage />

@@ -3,6 +3,7 @@ import React from 'react'
 import { useTable } from 'react-table'
 import { Container, Row, Col, Table } from 'react-bootstrap/';
 import {getUnis} from "../api/Api";
+import { Link } from "react-router-dom";
 
 function UniPage() {
   const [uniData, setUniData] = useState([]);
@@ -75,18 +76,20 @@ function UniPage() {
             </thead>
             <tbody {...getTableBodyProps()}>
               {rows.map(row => {
+                
                 prepareRow(row)
                   return (
                     <tr {...row.getRowProps()}>
                       {row.cells.map(cell => {
                         return (
+                          
                           <td
                             {...cell.getCellProps()}
                             style={{
                             padding: '10px',
                             }}
                           >
-                            {cell.render('Cell')}
+                            {cell.column.Header == "University" ? <Link to={{pathname: `/university/${cell.value}`, state: {university: cell.row.original}}}>{cell.render('Cell')}</Link> : cell.render('Cell')}
                           </td>
                         )
                       })}

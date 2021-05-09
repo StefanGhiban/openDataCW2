@@ -7,4 +7,11 @@ router.route('/').get((req, res) => {
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
+router.route('/l/:name').get((req, res) => {
+    City.find({name: req.params.name})
+    .then(city => res.json(city))
+    .catch(err => res.status(400).json('Error: ' + err));
+});
+
+
 module.exports = router;
