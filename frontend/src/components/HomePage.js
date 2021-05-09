@@ -154,7 +154,7 @@ const HomePage = () => {
                       </div>
                   </Form>
                   <div>
-                    {results.map(result => (<Link to={{pathname: `/university/${result.title}`, state: {university: result}}}>{result.title}</Link>))}
+                    {results.map(result => (<p><Link to={{pathname: `/university/${result.title}`, state: {university: result}}}>{result.title}</Link></p>))}
                   </div>
               </Col>
               <Col className="d-flex justify-content-center p-2">

@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 
 const universitySchema = new Schema({
   ranking: { type: String, required: true },
-  title: { type: String, required: true, lowercase: true },
+  title: { type: String, required: true },
   location: { type: String, required: true },
   teachingScore: { type: Number, required: true },
   overallScore: { type: String, required: true },

@@ -5,26 +5,21 @@ import { getSearchedUni, getCityNumbeo } from "../api/Api";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
 import Jumbotron from "react-bootstrap/Jumbotron";
-import Table from "react-bootstrap/Table";
 import ListGroup from "react-bootstrap/ListGroup";
 
-const UniversityPage = (props) => {
+const UniversityPage = () => {
 
   const { state }  = useLocation();
   const [prices, setPrices] = useState([]);
 
 
   useEffect(() => {
-    // console.log(state.university);
-
     getSearchedUni(state.university.title)
       .then(res => {
         // console.log(res);
-      }); 
-    
+      });
+
     // getCity(state.university.location)
     //   .then(res => {
     //     console.log(res);
@@ -33,12 +28,10 @@ const UniversityPage = (props) => {
       .then(res => {
         console.log(res.prices);
         setPrices(res.prices);
-        // console.log(prices);
       })
   },[]);
 
-  
-//   console.log(prices);
+  console.log(prices[0]);
 
   return (
     <Container fluid>
@@ -85,16 +78,23 @@ const UniversityPage = (props) => {
                     <ListGroup className="px-2" variant="flush">
                       {/* <ListGroup.Item>{prices[3].item_name}: {prices[3].average_price}£</ListGroup.Item>
                       <ListGroup.Item>{prices[4].item_name}: {prices[4].average_price}£</ListGroup.Item>
-                      <ListGroup.Item>{prices[5].item_name}: {prices[5].average_price}£</ListGroup.Item>
+                      <ListGroup.Item>{prices[5].item_name}: {prices[5].average_price}£</ListGroup.Item> */}
+                      {
+                        prices.map(price => {
+                          if(price.item_name === "Water (1.5 liter bottle), Markets" || price.item_name === "Bottle of Wine (Mid-Range), Markets") {
+                            return <ListGroup.Item>{price.item_name}</ListGroup.Item>
+                          }
+                        })
+                      }
                     </ListGroup>
                   </Col>
-                  <Col className="d-flex justify-content-center align-items center flex-column">
+                  {/* <Col className="d-flex justify-content-center align-items center flex-column">
                     <h3>Rent</h3>
                     <ListGroup className="px-2" variant="flush">
                       <ListGroup.Item>{prices[23].item_name}: {prices[23].average_price}£</ListGroup.Item>
-                      <ListGroup.Item>{prices[24].item_name}: {prices[24].average_price}£</ListGroup.Item> */}
+                      <ListGroup.Item>{prices[24].item_name}: {prices[24].average_price}£</ListGroup.Item>
                     </ListGroup>
-                  </Col>
+                  </Col> */}
                 </Row>
               </Container>
             </Col>
