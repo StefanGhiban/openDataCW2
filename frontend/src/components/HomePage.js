@@ -5,6 +5,7 @@ import * as d3 from "d3";
 import Search from "./homeComps/Search";
 import RecentSearches from "./homeComps/RecentSearches";
 import Bar from "./homeComps/Bar";
+import aaa from "../assets/aaa.png";
 
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
@@ -129,6 +130,7 @@ const HomePage = () => {
       <Row>
         <Col>
           <Jumbotron className="d-flex flex-column align-items-center jumbo">
+            <img src={aaa} alt="logo2" width="200" />
             <h1>The complete university ranking.</h1>
             <p>
                 That ranking that also takes into account your pocket, not only your brain.

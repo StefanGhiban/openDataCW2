@@ -105,7 +105,8 @@ function UniPage() {
                             padding: '10px',
                             }}
                           >
-                            {cell.column.Header == "University" ? <Link to={{pathname: `/university/${cell.value}`, state: {university: cell.row.original}}}>{cell.render('Cell')}</Link> : cell.render('Cell')}
+                            {/* {cell.column.Header == "University" ? <Link to={{pathname: `/university/${cell.value}`, state: {university: cell.row.original}}}>{cell.render('Cell')}</Link> : cell.render('Cell')} */}
+                            {cell.render('Cell')}
                           </td>
                         )
                       })}

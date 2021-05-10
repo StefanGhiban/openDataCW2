@@ -32,8 +32,6 @@ const UniversityPage = () => {
       })
   },[]);
 
-  console.log(prices[0]);
-
   return (
     <Container fluid>
       <Row>
@@ -148,7 +146,7 @@ const UniversityPage = () => {
                           price.item_name === "Chicken Fillets (1kg), Markets"
 
                           ) {
-                            return <ListGroup.Item>{price.item_name}{price.average_price}</ListGroup.Item>
+                            return <ListGroup.Item class="d-flex justify-content-between"><span>{price.item_name}</span>  <span class="text-primary">{(Math.round(price.average_price*100) /100).toFixed(2)}£</span></ListGroup.Item>
                           }
                         })
                       }
@@ -168,7 +166,7 @@ const UniversityPage = () => {
                            
 
                            ) {
-                            return <ListGroup.Item>{price.item_name} {price.average_price}</ListGroup.Item>
+                            return <ListGroup.Item class="d-flex justify-content-between"><span>{price.item_name}</span>  <span class="text-primary">{(Math.round(price.average_price*100) /100).toFixed(2)}£</span></ListGroup.Item>
                           }
                         })
                       }
@@ -186,7 +184,7 @@ const UniversityPage = () => {
                           price.item_name === "Volkswagen Golf 1.4 90 KW Trendline (Or Equivalent New Car), Transportation"
 
                           ) {
-                            return <ListGroup.Item>{price.item_name} {price.average_price}</ListGroup.Item>
+                            return <ListGroup.Item class="d-flex justify-content-between"><span>{price.item_name}</span>  <span class="text-primary">{(Math.round(price.average_price*100) /100).toFixed(2)}£</span></ListGroup.Item>
                           }
                         })
                       }
