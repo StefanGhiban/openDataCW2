@@ -1,17 +1,19 @@
 import { useState, useEffect, useMemo, useRef } from "react";
 import { useTable } from "react-table";
+import * as d3 from "d3";
 
 import Search from "./homeComps/Search";
 import RecentSearches from "./homeComps/RecentSearches";
+import Bar from "./homeComps/Bar";
 
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Jumbotron from "react-bootstrap/Jumbotron";
-import Table from "react-bootstrap/Table";
 
 
 import { getSearchedLocation, getSearchedUni, saveSearch, getSearches } from "../api/Api";
+import { index } from "d3";
 
 const HomePage = () => {
 
@@ -30,34 +32,83 @@ const HomePage = () => {
       })
   }, [results])
 
-  // const d3Graph = useRef(null);
+  const d3Graph = useRef(null);
 
-  // const exData = [100, 200, 300, 400, 500];
+  const exData = [
+    {
+      name: "name",
+      value: 100,
+    },
+    {
+      name: "name2",
+      value: 200,
+    },
+    {
+      name: "name3",
+      value: 300,
+    }
+  ];
 
-  // const getGraph = () => {
-  //   let size = 500;
-  //   let svg = d3.select(d3Graph.current)
-  //               .append('svg')
-  //               .attr('width', size)
-  //               .attr('height', size)
-  //               .attr('display', 'block')
-  //               .attr('margin', 'auto');
+  const getGraph = () => {
+    let height = 500;
+    let width = 200;
+    let svg = d3.select(d3Graph.current)
+                .append('svg')
+                .attr('width', width)
+                .attr('height', height)
+                .attr('display', 'block')
+                .attr('margin', 'auto');
 
-  //   let rect_width = 30;
-  //   svg.selectAll('rect')
-  //       .data(exData)
-  //       .enter()
-  //       .append('rect')
-  //       .attr('x', (d, i) => 5 + i*(rect_width + 5))
-  //       .attr('y', d => size - d)
-  //       .attr('width', rect_width)
-  //       .attr('height', d => d)
-  //       .attr('fill', 'teal');
-  // }
+    let rect_width = 30;
+    svg.selectAll('rect')
+        .data(exData)
+        .enter()
+        .append('rect')
+        .attr('x', (d, i) => 5 + i*(rect_width + 5))
+        .attr('y', d => height - d.value)
+        .attr('width', rect_width)
+        .attr('height', d => d.value)
+        .attr('fill', 'teal');
+  }
 
-  // useEffect( () => {
-  //   getGraph();
-  // }, [])
+  useEffect( () => {
+    getGraph();
+  }, [])
+
+  // const generateData = (value, length = 5) =>
+  //   d3.range(length).map((item, index) => ({
+  //     index: index,
+  //     date: index,
+  //     value: value === null || value === undefined ? Math.random() * 100 : value
+  //   }));
+
+  const [data2, setData2] = useState([
+    {
+      index: 0,
+      date: "UoS",
+      value: 80,
+    },
+    {
+      index: 1,
+      date: "UoM",
+      value: 90,
+    },
+    {
+      index: 2,
+      date: "UoL",
+      value: 100,
+    },
+    {
+      index: 3,
+      date: "LSE",
+      value: 110,
+    },
+    {
+      index: 4,
+      date: "UCL",
+      value: 110,
+    },
+  ]);
 
   const handleSubmitLocation = (event) => {
     event.preventDefault();
@@ -134,14 +185,30 @@ const HomePage = () => {
       <Row>
         <Container fluid>
           <Row>
-              <Col className="d-flex justify-content-center">
+              <Col className="d-flex align-items-center flex-column">
                   {/* <div ref={d3Graph} className="d-flex justify-content-center">
                   </div> */}
+                  <Bar
+                    data={data2}
+                    width={300}
+                    height={200}
+                    top={20}
+                    bottom={30}
+                    left={30}
+                    right={0}
+                  />
+                  <div>
+                    <p>Uos: University of Southampton</p>
+                    <p>UoM: University of Manchester</p>
+                    <p>UoL: University of Leeds</p>
+                    <p>UCL: University College London</p>
+                    <p>LSE: London School of Economics</p>
+                  </div>
               </Col>
-              <Col className="d-flex justify-content-center flex-column">
+              <Col className="d-flex flex-column">
                   <Search handleSubmitUni={handleSubmitUni} handleSubmitLocation={handleSubmitLocation} results={results} setSearch={setSearch}/>
               </Col>
-              <Col className="d-flex justify-content-center p-2">
+              <Col className="d-flex justify-content-center pl-2 pr-5">
                   <RecentSearches getTableProps={getTableProps} getTableBodyProps={getTableBodyProps} headerGroups={headerGroups} rows={rows} prepareRow={prepareRow}/>
               </Col>
           </Row>
