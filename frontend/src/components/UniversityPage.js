@@ -7,6 +7,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Jumbotron from "react-bootstrap/Jumbotron";
 import ListGroup from "react-bootstrap/ListGroup";
+import Carousel from "react-bootstrap/Carousel";
 
 const UniversityPage = () => {
 
@@ -37,7 +38,7 @@ const UniversityPage = () => {
     <Container fluid>
       <Row>
           <Col>
-              <Jumbotron className="d-flex flex-column align-items-center">
+              <Jumbotron className="d-flex flex-column align-items-center jumbo">
                   <h1>{state.university.title}</h1>
                   <p>
                       World ranking: {state.university.worldRanking} / UK ranking: {state.university.ukRanking}
@@ -52,7 +53,7 @@ const UniversityPage = () => {
         <Container>
           <Row>
             <Col className="d-flex justify-content-center flex-column align-items-center">
-              <h3>University scores</h3>
+              <h3>University scores <i class="fas fa-university"></i></h3>
               <div className="d-flex justify-content-center align-items-center">
                 <ListGroup className="px-2" variant="flush">
                   <ListGroup.Item>Teaching score: {state.university.teachingScore}</ListGroup.Item>
@@ -67,35 +68,131 @@ const UniversityPage = () => {
               </div>
             </Col>
           </Row>
-          <hr />
+          <hr className="py-2"/>
           <Row>
             <Col className="d-flex justify-content-center flex-column align-items-center">
-              <h3>City prices</h3>
-              <Container fluid>
+              <h3>City prices <i class="fas fa-pound-sign"></i></h3>
+              <Container fluid className="bg-primary">
                 <Row>
-                  <Col className="d-flex justify-content-center align-items center flex-column">
-                    <h3>Groceries</h3>
+                  <Col>
+                    <Carousel>
+                      <Carousel.Item>
+                        <h3>Groceries <i class="fas fa-shopping-cart"></i></h3>
+                        <ListGroup className="px-5" variant="flush">
+                          {
+                            prices.map(price => {
+                              if(price.item_name === "Eggs (regular) (12), Markets" ||
+                              price.item_name === "Milk (regular), (1 liter), Market"||
+                              price.item_name === "Meal, Inexpensive Restaurant, Restaurants"||
+                              price.item_name === "McMeal at McDonalds (or Equivalent Combo Meal), Restaurants"||
+                              price.item_name === "Local Cheese (1kg), Markets"||
+                              price.item_name === "Chicken Fillets (1kg), Markets"
+
+                              ) {
+                                return <ListGroup.Item>{price.item_name} {(Math.round(price.average_price*100) /100).toFixed(2)}</ListGroup.Item>
+                              }
+                            })
+                          }
+                        </ListGroup>
+                      </Carousel.Item>
+                      <Carousel.Item>
+                        <h3>Rent <i class="fas fa-home"></i></h3>
+                        <ListGroup className="px-5" variant="flush">
+                        {
+                            prices.map(price => {
+                              if(price.item_name === "Apartment (1 bedroom) Outside of Centre, Rent Per Month" ||
+                              price.item_name === "Apartment (1 bedroom) in City Centre, Rent Per Month" ||
+                              price.item_name === "Basic (Electricity, Heating, Cooling, Water, Garbage) for 85m2 Apartment, Utilities (Monthly)"||
+                              price.item_name === "Apartment (3 bedrooms) in City Centre, Rent Per Month"||
+                              price.item_name === "Apartment (3 bedrooms) Outside of Centre, Rent Per Month"||
+                              price.item_name === "Internet (60 Mbps or More, Unlimited Data, Cable/ADSL), Utilities (Monthly)"
+                              ) {
+                                return <ListGroup.Item>{price.item_name} {(Math.round(price.average_price*100) /100).toFixed(2)}</ListGroup.Item>
+                              }
+                            })
+                          }
+                        </ListGroup>
+                      </Carousel.Item>
+                      <Carousel.Item>
+                        <h3>Transportation <i class="fas fa-shopping-cart"></i></h3>
+                        <ListGroup className="px-5" variant="flush">
+                          {
+                            prices.map(price => {
+                              if(
+                              price.item_name === "One-way Ticket (Local Transport), Transportation"||
+                              price.item_name === "Monthly Pass (Regular Price), Transportation"||
+                              price.item_name === "Gasoline (1 liter), Transportation"||
+                              price.item_name === "Volkswagen Golf 1.4 90 KW Trendline (Or Equivalent New Car), Transportation"
+
+                              ) {
+                                return <ListGroup.Item>{price.item_name} {(Math.round(price.average_price*100) /100).toFixed(2)}</ListGroup.Item>
+                              }
+                            })
+                          }
+                        </ListGroup>
+                      </Carousel.Item>
+                    </Carousel>
+                  </Col>
+                </Row>
+                {/* <Row>
+                  <Col className="d-flex justify-content-center align-items-center flex-column pt-2">
+                    <h3>Groceries <i class="fas fa-shopping-cart"></i></h3>
                     <ListGroup className="px-2" variant="flush">
-                      {/* <ListGroup.Item>{prices[3].item_name}: {prices[3].average_price}£</ListGroup.Item>
-                      <ListGroup.Item>{prices[4].item_name}: {prices[4].average_price}£</ListGroup.Item>
-                      <ListGroup.Item>{prices[5].item_name}: {prices[5].average_price}£</ListGroup.Item> */}
                       {
                         prices.map(price => {
-                          if(price.item_name === "Water (1.5 liter bottle), Markets" || price.item_name === "Bottle of Wine (Mid-Range), Markets") {
-                            return <ListGroup.Item>{price.item_name}</ListGroup.Item>
+                          if(price.item_name === "Eggs (regular) (12), Markets" ||
+                          price.item_name === "Milk (regular), (1 liter), Market"||
+                          price.item_name === "Meal, Inexpensive Restaurant, Restaurants"||
+                          price.item_name === "McMeal at McDonalds (or Equivalent Combo Meal), Restaurants"||
+                          price.item_name === "Local Cheese (1kg), Markets"||
+                          price.item_name === "Chicken Fillets (1kg), Markets"
+
+                          ) {
+                            return <ListGroup.Item>{price.item_name}{price.average_price}</ListGroup.Item>
                           }
                         })
                       }
                     </ListGroup>
                   </Col>
-                  {/* <Col className="d-flex justify-content-center align-items center flex-column">
-                    <h3>Rent</h3>
+                  <Col className="d-flex justify-content-center align-items-center flex-column pt-2">
+                    <h3>Rent <i class="fas fa-home"></i></h3>
                     <ListGroup className="px-2" variant="flush">
-                      <ListGroup.Item>{prices[23].item_name}: {prices[23].average_price}£</ListGroup.Item>
-                      <ListGroup.Item>{prices[24].item_name}: {prices[24].average_price}£</ListGroup.Item>
+                    {
+                        prices.map(price => {
+                          if(price.item_name === "Apartment (1 bedroom) Outside of Centre, Rent Per Month" ||
+                           price.item_name === "Apartment (1 bedroom) in City Centre, Rent Per Month" ||
+                           price.item_name === "Basic (Electricity, Heating, Cooling, Water, Garbage) for 85m2 Apartment, Utilities (Monthly)"||
+                           price.item_name === "Apartment (3 bedrooms) in City Centre, Rent Per Month"||
+                           price.item_name === "Apartment (3 bedrooms) Outside of Centre, Rent Per Month"||
+                           price.item_name === "Internet (60 Mbps or More, Unlimited Data, Cable/ADSL), Utilities (Monthly)"
+                           
+
+                           ) {
+                            return <ListGroup.Item>{price.item_name} {price.average_price}</ListGroup.Item>
+                          }
+                        })
+                      }
                     </ListGroup>
-                  </Col> */}
-                </Row>
+                  </Col>
+                  <Col className="d-flex justify-content-center align-items-center flex-column pt-2">
+                    <h3>Transportation <i class="fas fa-shopping-cart"></i></h3>
+                    <ListGroup className="px-2" variant="flush">
+                      {
+                        prices.map(price => {
+                          if(
+                          price.item_name === "One-way Ticket (Local Transport), Transportation"||
+                          price.item_name === "Monthly Pass (Regular Price), Transportation"||
+                          price.item_name === "Gasoline (1 liter), Transportation"||
+                          price.item_name === "Volkswagen Golf 1.4 90 KW Trendline (Or Equivalent New Car), Transportation"
+
+                          ) {
+                            return <ListGroup.Item>{price.item_name} {price.average_price}</ListGroup.Item>
+                          }
+                        })
+                      }
+                    </ListGroup>
+                  </Col>
+                </Row> */}
               </Container>
             </Col>
           </Row>

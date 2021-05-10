@@ -19,9 +19,7 @@ function CostPage() {
   }, [])
 
   const data = React.useMemo(
-    () => ukData.sort((a, b) => (a.cpi_index < b.cpi_index) ? 1 : -1)  );
-
-  console.log(ukData);
+    () => ukData.sort((a, b) => (a.cpi_and_rent_index > b.cpi_and_rent_index) ? 1 : -1)  );
 
   const columns = React.useMemo(
     () => [
@@ -31,12 +29,8 @@ function CostPage() {
       },
       {
         Header: 'Cost Index',
-        accessor: 'cpi_index',
+        accessor: 'cpi_and_rent_index',
       },
-      {
-        Header: 'Rent Index',
-        accessor: 'rent_index',
-      }
     ],
     []
   )

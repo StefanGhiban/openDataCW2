@@ -24,89 +24,37 @@ const HomePage = () => {
   useEffect(() => {
     getSearches()
       .then(res => {
-        console.log(res);
         setSearchData(res);
       })
       .catch(error => {
-        console.log(error);
       })
   }, [results])
-
-  const d3Graph = useRef(null);
-
-  const exData = [
-    {
-      name: "name",
-      value: 100,
-    },
-    {
-      name: "name2",
-      value: 200,
-    },
-    {
-      name: "name3",
-      value: 300,
-    }
-  ];
-
-  const getGraph = () => {
-    let height = 500;
-    let width = 200;
-    let svg = d3.select(d3Graph.current)
-                .append('svg')
-                .attr('width', width)
-                .attr('height', height)
-                .attr('display', 'block')
-                .attr('margin', 'auto');
-
-    let rect_width = 30;
-    svg.selectAll('rect')
-        .data(exData)
-        .enter()
-        .append('rect')
-        .attr('x', (d, i) => 5 + i*(rect_width + 5))
-        .attr('y', d => height - d.value)
-        .attr('width', rect_width)
-        .attr('height', d => d.value)
-        .attr('fill', 'teal');
-  }
-
-  useEffect( () => {
-    getGraph();
-  }, [])
-
-  // const generateData = (value, length = 5) =>
-  //   d3.range(length).map((item, index) => ({
-  //     index: index,
-  //     date: index,
-  //     value: value === null || value === undefined ? Math.random() * 100 : value
-  //   }));
 
   const [data2, setData2] = useState([
     {
       index: 0,
-      date: "UoS",
-      value: 80,
-    },
-    {
-      index: 1,
-      date: "UoM",
-      value: 90,
-    },
-    {
-      index: 2,
-      date: "UoL",
+      date: "UoC",
       value: 100,
     },
     {
+      index: 1,
+      date: "UoO",
+      value: 94,
+    },
+    {
+      index: 2,
+      date: "UoE",
+      value: 88,
+    },
+    {
       index: 3,
-      date: "LSE",
-      value: 110,
+      date: "UoM",
+      value: 80,
     },
     {
       index: 4,
-      date: "UCL",
-      value: 110,
+      date: "UoS",
+      value: 79,
     },
   ]);
 
@@ -115,13 +63,15 @@ const HomePage = () => {
 
     getSearchedLocation(search)
       .then(res => {
-        setResults(res);
-
         if(res.length !== 0) {
+          setResults(res);
           saveSearch(search)
             .then(res => {
               console.log(res);
             })
+        }
+        else {
+          setResults(["No universities found"]);
         }
       })
       .catch(error => {
@@ -134,13 +84,15 @@ const HomePage = () => {
 
     getSearchedUni(search)
       .then(res => {
-        setResults(res);
-
         if(res.length !== 0) {
+          setResults(res);
           saveSearch(search)
             .then(res => {
               console.log(res);
             })
+        }
+        else {
+          setResults(['No universities found'])
         }
       })
       .catch(error => {
@@ -170,11 +122,13 @@ const HomePage = () => {
     prepareRow,
   } = useTable({ columns, data })
 
+  console.log(results);
+
   return(
     <Container fluid className="p-0">
       <Row>
         <Col>
-          <Jumbotron className="d-flex flex-column align-items-center">
+          <Jumbotron className="d-flex flex-column align-items-center jumbo">
             <h1>The complete university ranking.</h1>
             <p>
                 That ranking that also takes into account your pocket, not only your brain.
@@ -186,23 +140,22 @@ const HomePage = () => {
         <Container fluid>
           <Row>
               <Col className="d-flex align-items-center flex-column">
-                  {/* <div ref={d3Graph} className="d-flex justify-content-center">
-                  </div> */}
+                  <h4>Top 5 Universities based on aggregated score</h4>
                   <Bar
                     data={data2}
-                    width={300}
-                    height={200}
+                    width={400}
+                    height={300}
                     top={20}
                     bottom={30}
                     left={30}
                     right={0}
                   />
                   <div>
-                    <p>Uos: University of Southampton</p>
-                    <p>UoM: University of Manchester</p>
-                    <p>UoL: University of Leeds</p>
-                    <p>UCL: University College London</p>
-                    <p>LSE: London School of Economics</p>
+                    <p>UoC: University of Cambridge</p>
+                    <p>UoO: University of Oxford</p>
+                    <p>UoE: University of Edinburgh</p>
+                    <p>UCM: University of Manchester</p>
+                    <p>UoS: University of Sheffield</p>
                   </div>
               </Col>
               <Col className="d-flex flex-column">

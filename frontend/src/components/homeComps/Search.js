@@ -8,7 +8,7 @@ const Search = (props) => {
         <div>
             <Form className="p-2">
                       <Form.Group className="d-flex justify-content-center flex-column align-items-center">
-                          <Form.Label className="font-weight-bold">Search for a University</Form.Label>
+                          <Form.Label className="font-weight-bold"><h4>Search for a University</h4></Form.Label>
                           <Form.Control type="search" placeholder="Search..." onChange={(event) => props.setSearch(event.target.value)}/>
                       </Form.Group>
                       <div className="d-flex justify-content-around align-items-center">
@@ -21,7 +21,7 @@ const Search = (props) => {
                       </div>
                   </Form>
             <div>
-                {props.results.map(result => (<p><Link to={{pathname: `/university/${result.title}`, state: {university: result}}}>{result.title}</Link></p>))}
+                {props.results.map(result => (result === "No universities found" ? <p>No universities found</p> : <p><Link to={{pathname: `/university/${result.title}`, state: {university: result}}}>{result.title}</Link></p>))}
             </div>
         </div>
     )
