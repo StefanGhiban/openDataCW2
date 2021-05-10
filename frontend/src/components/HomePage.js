@@ -1,12 +1,12 @@
 import { useState, useEffect, useMemo, useRef } from "react";
 import { useTable } from "react-table";
-import { Link } from "react-router-dom";
+
+import Search from "./homeComps/Search";
+import RecentSearches from "./homeComps/RecentSearches";
 
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
 import Jumbotron from "react-bootstrap/Jumbotron";
 import Table from "react-bootstrap/Table";
 
@@ -139,68 +139,10 @@ const HomePage = () => {
                   </div> */}
               </Col>
               <Col className="d-flex justify-content-center flex-column">
-                  <Form className="p-2">
-                      <Form.Group className="d-flex justify-content-center flex-column align-items-center">
-                          <Form.Label className="font-weight-bold">Search for a University</Form.Label>
-                          <Form.Control type="search" placeholder="Search..." onChange={(event) => setSearch(event.target.value)}/>
-                      </Form.Group>
-                      <div className="d-flex justify-content-around align-items-center">
-                        <Button onClick={handleSubmitUni}>
-                          Search by uni
-                        </Button>
-                        <Button onClick={handleSubmitLocation}>
-                          Search by location
-                        </Button>
-                      </div>
-                  </Form>
-                  <div>
-                    {results.map(result => (<p><Link to={{pathname: `/university/${result.title}`, state: {university: result}}}>{result.title}</Link></p>))}
-                  </div>
+                  <Search handleSubmitUni={handleSubmitUni} handleSubmitLocation={handleSubmitLocation} results={results} setSearch={setSearch}/>
               </Col>
               <Col className="d-flex justify-content-center p-2">
-
-                <Table bordered responsize {...getTableProps()} style={{}}>
-                  <thead>
-                    {headerGroups.map(headerGroup => (
-                      <tr {...headerGroup.getHeaderGroupProps()}>
-                        {headerGroup.headers.map(column => (
-                          <th
-                            {...column.getHeaderProps()}
-                            style={{
-                            borderBottom: 'solid 3px red',
-                            background: 'aliceblue',
-                            color: 'black',
-                            fontWeight: 'bold',
-                            }}
-                          >
-                            {column.render('Header')}
-                          </th>
-                        ))}
-                      </tr>
-                    ))}
-                  </thead>
-                  <tbody {...getTableBodyProps()}>
-                    {rows.map(row => {
-                      prepareRow(row)
-                        return (
-                          <tr {...row.getRowProps()}>
-                            {row.cells.map(cell => {
-                              return (
-                                <td
-                                  {...cell.getCellProps()}
-                                  style={{
-                                  padding: '10px',
-                                  }}
-                                >
-                                  {cell.render('Cell')}
-                                </td>
-                              )
-                            })}
-                          </tr>
-                        )
-                    })}
-                  </tbody>
-                </Table>
+                  <RecentSearches getTableProps={getTableProps} getTableBodyProps={getTableBodyProps} headerGroups={headerGroups} rows={rows} prepareRow={prepareRow}/>
               </Col>
           </Row>
         </Container>

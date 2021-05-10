@@ -1,8 +1,12 @@
 import Nav from "react-bootstrap/Nav";
+import logo from "../assets/logo.png";
 
 const Navbar = () => {
     return(
-        <Nav className="justify-content-center"  variant="tabs">
+        <Nav className="justify-content-center align-items-center"  variant="tabs">
+            <a className="navbar-brand" href="/">
+                <img className="img-fluid" src={logo} alt="logo" width="50"/>
+            </a>
             <Nav.Item>
                 <Nav.Link href="/">Home</Nav.Link>
             </Nav.Item>
