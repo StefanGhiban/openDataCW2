@@ -1,20 +1,15 @@
-import { useState, useEffect, useMemo, useRef } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useTable } from "react-table";
-import * as d3 from "d3";
 
 import Search from "./homeComps/Search";
 import RecentSearches from "./homeComps/RecentSearches";
 import Bar from "./homeComps/Bar";
 import aaa from "../assets/aaa.png";
 
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import Jumbotron from "react-bootstrap/Jumbotron";
+import { Container, Row, Col, Jumbotron } from "react-bootstrap/";
 
 
 import { getSearchedLocation, getSearchedUni, saveSearch, getSearches } from "../api/Api";
-import { index } from "d3";
 
 const HomePage = () => {
 
@@ -123,12 +118,10 @@ const HomePage = () => {
     prepareRow,
   } = useTable({ columns, data })
 
-  console.log(results);
-
   return(
-    <Container fluid className="p-0">
+    <Container fluid>
       <Row>
-        <Col>
+        <Col className="p-0">
           <Jumbotron className="d-flex flex-column align-items-center jumbo">
             <img src={aaa} alt="logo2" width="200" />
             <h1>The complete university ranking.</h1>
