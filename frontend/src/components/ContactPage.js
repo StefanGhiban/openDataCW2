@@ -1,32 +1,64 @@
-import React from "react";
-import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBIcon, MDBInput } from 'mdbreact';
+import { Container, Row, Col, Jumbotron, Card } from 'react-bootstrap/';
+import iustin from '../assets/iustin.jpeg';
+import bianca from '../assets/bianca.jpeg';
+import stefan from '../assets/stefan.jpeg';
+import victoria from '../assets/victoria.jpeg';
 
 const ContactPage = () => {
 return (
-<MDBContainer>
-  <MDBRow>
-    <MDBCol  md="6">
-      <form>
-        <p className="h5 text-center mb-4">Write to us</p>
-        <div className="grey-text">
-          <MDBInput label="Your name" icon="user" group type="text" validate error="wrong"
-            success="right" />
-          <MDBInput label="Your email" icon="envelope" group type="email" validate error="wrong"
-            success="right" />
-          <MDBInput label="Subject" icon="tag" group type="text" validate error="wrong" success="right" />
-          <MDBInput type="textarea" rows="2" label="Your message" icon="pencil-alt" />
-        </div>
-        <div className="text-center">
-          <MDBBtn outline color="secondary">
-            Send
-            <MDBIcon far icon="paper-plane" className="ml-1" />
-          </MDBBtn>
-        </div>
-      </form>
-    </MDBCol>
-  </MDBRow>
-</MDBContainer>
-);
+    <Container fluid>
+      <Row>
+        <Col className="p-0">
+          <Jumbotron className="d-flex flex-column align-items-center jumbo">
+            <h1>Contact page</h1>
+            <p>
+              Here are the details of the developers of the website
+            </p>
+          </Jumbotron>
+        </Col>
+      </Row>
+      <Row>
+        <Col className="d-flex justify-content-center">
+          <Card className="mr-3" style={{ width: '18rem' }}>
+            <Card.Img variant="top" src={stefan} />
+            <Card.Body>
+              <Card.Title>Stefan Ghiban</Card.Title>
+              <Card.Text>
+                isg1u17@soton.ac.uk
+              </Card.Text>
+            </Card.Body>
+          </Card>
+          <Card className="mr-3" style={{ width: '18rem' }}>
+            <Card.Img variant="top" src={victoria} />
+            <Card.Body>
+              <Card.Title>Victoria Draganova</Card.Title>
+              <Card.Text>
+                vd4g17@soton.ac.uk
+              </Card.Text>
+            </Card.Body>
+          </Card>
+          <Card className="mr-3" style={{ width: '18rem' }}>
+            <Card.Img variant="top" src={iustin} />
+            <Card.Body>
+              <Card.Title>Iustin Dinca</Card.Title>
+              <Card.Text>
+                igd1u17@soton.ac.uk
+              </Card.Text>
+            </Card.Body>
+          </Card>
+          <Card className="mr-3" style={{ width: '18rem' }}>
+            <Card.Img variant="top" src={bianca} />
+            <Card.Body>
+              <Card.Title>Bianca Corbu</Card.Title>
+              <Card.Text>
+                bgc1u17@soton.ac.uk
+              </Card.Text>
+            </Card.Body>
+          </Card>
+        </Col>
+      </Row>
+    </Container>
+  );
 };
 
 export default ContactPage;

@@ -151,65 +151,6 @@ const UniversityPage = () => {
                     </Swiper>
                   </Col>
                 </Row>
-                {/* <Row>
-                  <Col className="d-flex align-items-center flex-column pt-2">
-                    <h3>Groceries <i class="fas fa-shopping-cart"></i></h3>
-                    <ListGroup className="px-2" variant="flush">
-                      {
-                        prices.map(price => {
-                          if(price.item_name === "Eggs (regular) (12), Markets" ||
-                          price.item_name === "Milk (regular), (1 liter), Market"||
-                          price.item_name === "Meal, Inexpensive Restaurant, Restaurants"||
-                          price.item_name === "McMeal at McDonalds (or Equivalent Combo Meal), Restaurants"||
-                          price.item_name === "Local Cheese (1kg), Markets"||
-                          price.item_name === "Chicken Fillets (1kg), Markets"
-
-                          ) {
-                            return <ListGroup.Item class="d-flex justify-content-between"><span>{price.item_name}</span>  <span class="text-primary">{(Math.round(price.average_price*100) /100).toFixed(2)}£</span></ListGroup.Item>
-                          }
-                        })
-                      }
-                    </ListGroup>
-                  </Col>
-                  <Col className="d-flex align-items-center flex-column pt-2">
-                    <h3>Rent <i class="fas fa-home"></i></h3>
-                    <ListGroup className="px-2" variant="flush">
-                    {
-                        prices.map(price => {
-                          if(price.item_name === "Apartment (1 bedroom) Outside of Centre, Rent Per Month" ||
-                           price.item_name === "Apartment (1 bedroom) in City Centre, Rent Per Month" ||
-                           price.item_name === "Basic (Electricity, Heating, Cooling, Water, Garbage) for 85m2 Apartment, Utilities (Monthly)"||
-                           price.item_name === "Apartment (3 bedrooms) in City Centre, Rent Per Month"||
-                           price.item_name === "Apartment (3 bedrooms) Outside of Centre, Rent Per Month"||
-                           price.item_name === "Internet (60 Mbps or More, Unlimited Data, Cable/ADSL), Utilities (Monthly)"
-
-
-                           ) {
-                            return <ListGroup.Item class="d-flex justify-content-between"><span>{price.item_name}</span>  <span class="text-primary">{(Math.round(price.average_price*100) /100).toFixed(2)}£</span></ListGroup.Item>
-                          }
-                        })
-                      }
-                    </ListGroup>
-                  </Col>
-                  <Col className="d-flex align-items-center flex-column pt-2">
-                    <h3>Transportation <i class="fas fa-bus"></i></h3>
-                    <ListGroup className="px-2" variant="flush">
-                      {
-                        prices.map(price => {
-                          if(
-                          price.item_name === "One-way Ticket (Local Transport), Transportation"||
-                          price.item_name === "Monthly Pass (Regular Price), Transportation"||
-                          price.item_name === "Gasoline (1 liter), Transportation"||
-                          price.item_name === "Volkswagen Golf 1.4 90 KW Trendline (Or Equivalent New Car), Transportation"
-
-                          ) {
-                            return <ListGroup.Item class="d-flex justify-content-between"><span>{price.item_name}</span>  <span class="text-primary">{(Math.round(price.average_price*100) /100).toFixed(2)}£</span></ListGroup.Item>
-                          }
-                        })
-                      }
-                    </ListGroup>
-                  </Col>
-                </Row> */}
               </Container>
             </Col>
           </Row>
