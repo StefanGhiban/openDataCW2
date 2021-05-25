@@ -10,7 +10,6 @@ function CostPage() {
   useEffect(() => {
     getCities()
       .then(res => {
-        console.log(res);
         setUkData(res);
       })
       .catch(error => {
@@ -106,7 +105,7 @@ function CostPage() {
                                 padding: '10px',
                                 }}
                               >
-                                {cell.column.Header === "Cost Index" ? <strong>{cell.render('Cell')}</strong> : cell.render('Cell')}
+                                {cell.column.Header !== "City" ? (cell.column.Header === 'Cost Index' ? <strong>{cell.value.toFixed(2)}</strong> : cell.value.toFixed(2)) : cell.render('Cell')}
                               </td>
                             )
                           })}
