@@ -1,11 +1,11 @@
 import Nav from "react-bootstrap/Nav";
-import logo from "../assets/logo.png";
+import logoLogo from "../assets/logoLogo.png";
 
 const Navbar = () => {
     return(
         <Nav className="bg-dark justify-content-center align-items-center" navbarScroll="true">
             <a className="navbar-brand" href="/">
-                <img className="img-fluid" src={logo} alt="logo" width="50"/>
+                <img className="img-fluid" src={logoLogo} alt="logo" width="60"/>
             </a>
             <Nav.Item>
                 <Nav.Link  className="text-white" href="/">Home</Nav.Link>
