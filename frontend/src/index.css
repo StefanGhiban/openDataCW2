@@ -11,3 +11,11 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.jumbo {
+  background-color:#DEF0F2;
+}
+
+a, a:hover {
+  text-decoration: none;
+}

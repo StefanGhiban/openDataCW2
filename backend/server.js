@@ -20,12 +20,11 @@ connection.once('open', () => {
 
 const universitiesRouter = require('./routes/universities');
 const citiesRouter = require('./routes/cities');
-// const searchesRouter = require('./routes/searches');
+const searchesRouter = require('./routes/searches');
 
 app.use('/universities', universitiesRouter);
 app.use('/cities', citiesRouter);
-
-// app.use('/searches', searchesRouter);
+app.use('/searches', searchesRouter);
 
 app.listen(port, () => {
     console.log(`Server is running on port: ${port}`);

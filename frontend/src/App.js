@@ -5,6 +5,12 @@ import {
 } from "react-router-dom";
 import Navbar from "../src/components/Navbar";
 import HomePage from "../src/components/HomePage";
+import ContactPage from "../src/components/ContactPage";
+import AboutPage from "../src/components/AboutPage";
+import UniPage from "../src/components/UniPage";
+import CostPage from "../src/components/CostPage";
+import AggregatedPage from "../src/components/AggregatedPage";
+import UniversityPage from "../src/components/UniversityPage";
 
 function App() {
   return (
@@ -15,15 +21,23 @@ function App() {
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
         <Switch>
-          <Route path="/page1">
-            <div>
-              smth;
-            </div>
+          <Route path="/Unis">
+            <UniPage />
           </Route>
-          <Route path="/page2">
-            <div>
-              someososmsosmos
-            </div>
+          <Route path="/Costs">
+            <CostPage />
+          </Route>
+          <Route path="/Aggregated">
+            <AggregatedPage />
+          </Route>
+          <Route path="/About">
+            <AboutPage />
+          </Route>
+          <Route path="/Contact">
+            <ContactPage />
+          </Route>
+          <Route path="/university/:name">
+            <UniversityPage />
           </Route>
           <Route path="/">
             <HomePage />
